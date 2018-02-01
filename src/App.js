@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware} from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import reducers from './reducers/main';
-import Home from './components/Home'
+import styles from './styles/00-main.css'
+import Home from './components/Home';
 import Async from './middlewares/async';
 
 const createStoreWithMiddleware = applyMiddleware(Async)(createStore);

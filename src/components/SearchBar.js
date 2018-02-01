@@ -25,11 +25,11 @@ class SearchBar extends Component {
   render(){
     return (
       <div className="searchBarContainer">
-        SearchBar
         <form onSubmit={e => this.handleSubmit(e)}>
           <input
             className="searchInput"
-            placeholder="Begin Your Journey"
+            placeholder="Search Twitter"
+            autoFocus
             onChange={e => this.handleSearchValue(e.target.value)}
             value={this.state.searchValue}
           />

@@ -8,7 +8,6 @@ class Home extends Component {
   render(){
     return (
       <div>
-        Homeeee
         <SearchBar />
         <List />
       </div>

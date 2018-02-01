@@ -22,7 +22,7 @@ class List extends Component {
 
     return (
       <div className='list'>
-        Listtt
+        Tweets
         {this.props.results.data.map((e,i) => this.renderSearchResult(e,i))}
       </div>
     )

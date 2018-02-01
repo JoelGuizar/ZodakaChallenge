@@ -19,3 +19,17 @@
 .profile-block{
   display: inline-block;
 }
+
+input:focus{
+  outline: none;
+}
+
+input {
+  text-align: center;
+  margin: 5px;
+  font-size: 12px;
+  height: 30px;
+  width: 98%;
+  border-radius: 12px;
+}
+
