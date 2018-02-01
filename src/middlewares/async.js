@@ -6,7 +6,7 @@ export default function({dispatch}){
 
     action.payload
       .then(response => {
-        console.log('Promise Resolve');
+        console.log(response);
         const newAction = {...action, payload:response};
         dispatch(newAction);
       });

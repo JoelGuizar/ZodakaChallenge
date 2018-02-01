@@ -7,7 +7,12 @@ class List extends Component {
 
   renderSearchResult(result,i){
     return (
-      <ListItem title={result.title} desc={result.desc} key={i}/>
+      <ListItem
+      time={result.created_at}
+      text={result.text}
+      key={result.id_str}
+      user={result.user}
+      />
     )
   }
 
@@ -16,10 +21,10 @@ class List extends Component {
     if (!this.props.results) return <div></div>
 
     return (
-      <ul className='list'>
+      <div className='list'>
         Listtt
-        {this.props.results.map((e,i) => this.renderSearchResult(e,i))}
-      </ul>
+        {this.props.results.data.map((e,i) => this.renderSearchResult(e,i))}
+      </div>
     )
   }
 }

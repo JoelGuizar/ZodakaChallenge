@@ -3388,9 +3388,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function fetchSearchResults(searchTerm) {
   console.log(searchTerm);
-  var request = _axios2.default.post('/getTwitter', { searchTerm: searchTerm }).then(function (res) {
-    console.log(res);
-  });
+  var request = _axios2.default.post('/getTwitter', { searchTerm: searchTerm });
 
   return {
     type: _types.FETCH_RESULTS,
@@ -53120,7 +53118,12 @@ var List = function (_Component) {
   _createClass(List, [{
     key: 'renderSearchResult',
     value: function renderSearchResult(result, i) {
-      return _react2.default.createElement(_ListItem2.default, { title: result.title, desc: result.desc, key: i });
+      return _react2.default.createElement(_ListItem2.default, {
+        time: result.created_at,
+        text: result.text,
+        key: result.id_str,
+        user: result.user
+      });
     }
   }, {
     key: 'render',
@@ -53130,10 +53133,10 @@ var List = function (_Component) {
       if (!this.props.results) return _react2.default.createElement('div', null);
 
       return _react2.default.createElement(
-        'ul',
+        'div',
         { className: 'list' },
         'Listtt',
-        this.props.results.map(function (e, i) {
+        this.props.results.data.map(function (e, i) {
           return _this2.renderSearchResult(e, i);
         })
       );
@@ -53175,11 +53178,43 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ListItem = function ListItem(props) {
+  var prof = props.user;
   return _react2.default.createElement(
-    'li',
+    'div',
     { className: 'list-item' },
-    props.title,
-    props.desc
+    _react2.default.createElement(
+      'div',
+      { className: 'profile-block' },
+      _react2.default.createElement('img', { src: prof.profile_image_url }),
+      _react2.default.createElement(
+        'div',
+        { className: 'profile-name' },
+        prof.screen_name
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'profile-desc' },
+        prof.name,
+        prof.location,
+        prof.followers_count
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'text-block' },
+      _react2.default.createElement(
+        'div',
+        { className: '' },
+        'Time: ',
+        prof.created_at
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'text' },
+        'Text: ',
+        props.text
+      )
+    )
   );
 };
 
@@ -53208,7 +53243,7 @@ exports.default = function (_ref) {
       }
 
       action.payload.then(function (response) {
-        console.log('Promise Resolve');
+        console.log(response);
         var newAction = _extends({}, action, { payload: response });
         dispatch(newAction);
       });
