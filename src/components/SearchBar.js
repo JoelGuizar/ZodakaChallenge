@@ -40,7 +40,7 @@ class SearchBar extends Component {
 }
 
 function mapStateToProps(state){
-  return {searchResults: state.searchResults}
+  return {searchResults: state.twitter.searchResults}
 }
 
 export default connect(mapStateToProps, actions)(SearchBar)
